@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Portfolio Project | 송규언 (Joel)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background-color: #f0f2f5; }
+        .tab-scroll::-webkit-scrollbar { display: none; }
+        .tab-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .tab-btn { transition: all 0.15s ease; white-space: nowrap; }
+        .tab-btn.active { background-color: #0369a1; color: #fff; }
+        .tab-btn:not(.active) { color: #6b7280; }
+        .tab-btn:not(.active):hover { background-color: #e5e7eb; color: #374151; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .session-row { transition: box-shadow 0.15s; cursor: pointer; }
+        .session-row:hover { box-shadow: 0 0 0 2px #0369a133; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- TOP NAVBAR -->
+    <nav class="bg-[#111827] text-white px-6 py-3 flex items-center gap-3 text-sm">
+        <span class="font-black tracking-tight text-white text-base">글로벌공대인</span>
+        <span class="text-gray-500">|</span>
+        <span class="text-gray-400 text-xs">US 유학 / 취업 전문 컨설팅 서비스</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="bg-gradient-to-b from-[#075985] to-[#0369a1] text-white pt-14 pb-24 px-6 text-center">
+        <span class="bg-white/15 border border-white/20 text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full inline-block mb-5">
+            HIGH SCHOOL CS PORTFOLIO
+        </span>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-1">EAGLE INT</h1>
+        <p class="text-sky-200 mt-3 text-sm font-medium opacity-90">CS 포트폴리오 · 학교 커뮤니티 앱 · Supabase / Vercel / Gemini AI</p>
+        <a href="https://grchs-social-app.vercel.app/" target="_blank"
+           class="inline-flex items-center gap-2 mt-5 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-xs font-bold px-5 py-2 rounded-full transition-all">
+            <i class="fas fa-external-link-alt text-[10px]"></i> grchs-social-app.vercel.app
+        </a>
+    </div>
+
+    <!-- STUDENT INFO BAR -->
+    <div class="max-w-3xl mx-auto -mt-12 bg-[#e9ebee] rounded-2xl shadow grid grid-cols-2 md:grid-cols-4 overflow-hidden border border-gray-200 relative z-10">
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Student</p>
+            <p class="font-bold text-gray-800 text-sm">송규언 (Joel)</p>
+        </div>
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Background</p>
+            <p class="font-bold text-gray-800 text-sm">고1 · CS 포트폴리오</p>
+        </div>
+        <div class="p-5 text-center border-r border-gray-300">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Level</p>
+            <p class="font-bold text-gray-800 text-sm">Beginner → Dev</p>
+        </div>
+        <div class="p-5 text-center">
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Format</p>
+            <p class="font-bold text-gray-800 text-sm">1hr / week</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-3xl mx-auto mt-8 px-4 pb-20">
+
+        <!-- TAB NAV -->
+        <div class="tab-scroll flex gap-1.5 overflow-x-auto pb-1 mb-5">
+            <button class="tab-btn active text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('overview', this)">Overview</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w1', this)">1&nbsp;Vibe Coding 101</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w2', this)">2&nbsp;개발환경 설정</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w3', this)">3&nbsp;대시보드 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w4', this)">4&nbsp;Vercel 배포</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w5', this)">5&nbsp;Vercel 안정화</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w6', this)">6&nbsp;로그인 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w7', this)">7&nbsp;로그인 디버그</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w8', this)">8&nbsp;포스팅 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w9', this)">9&nbsp;채팅 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w10', this)">10&nbsp;채팅 심화</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w11', this)">11&nbsp;챗봇 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w12', this)">12&nbsp;테스트 추가</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w13', this)">13&nbsp;회원가입 수정</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w14', this)">14&nbsp;캘린더 구현</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w15', this)">15&nbsp;UI 개선</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w16', this)">16&nbsp;기능 마무리</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w17', this)">17&nbsp;버그 수정</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w18', this)">18&nbsp;영상 제작</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w19', this)">19&nbsp;최종 배포</button>
+            <button class="tab-btn text-xs font-bold px-4 py-2 rounded-full" onclick="switchTab('w20', this)">20&nbsp;포트폴리오 완성</button>
+        </div>
+
+        <!-- OVERVIEW PANEL -->
+        <div id="panel-overview" class="tab-panel active space-y-4">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm font-bold text-gray-700">Progress</span>
+                    <span class="text-sky-600 font-extrabold text-sm">15 / 20 Sessions</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded-full h-2">
+                    <div class="bg-sky-600 h-2 rounded-full" style="width: 75%"></div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div id="overview-list"></div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h2 class="text-base font-extrabold text-gray-800 mb-4">커리큘럼 설계 배경</h2>
+                <table class="w-full text-sm text-gray-600 mb-6 border-t border-gray-100">
+                    <thead><tr class="text-left"><th class="py-2 pr-6 text-gray-400 font-semibold text-xs uppercase tracking-wide w-24">항목</th><th class="py-2 text-gray-400 font-semibold text-xs uppercase tracking-wide">내용</th></tr></thead>
+                    <tbody class="divide-y divide-gray-50">
+                        <tr><td class="py-2.5 pr-6 text-gray-500 text-xs font-medium">시간 배분</td><td class="py-2.5 text-xs">개념 10분 + 실습 35분 + 코드 리뷰 15분</td></tr>
+                        <tr><td class="py-2.5 pr-6 text-gray-500 text-xs font-medium">플랫폼</td><td class="py-2.5 text-xs">Supabase + Vercel + GitHub + Gemini AI</td></tr>
+                        <tr><td class="py-2.5 pr-6 text-gray-500 text-xs font-medium">접근법</td><td class="py-2.5 text-xs">Vibe Coding — 자연어 명세 → AI 보조 → 직접 구현</td></tr>
+                        <tr><td class="py-2.5 pr-6 text-gray-500 text-xs font-medium">산출물</td><td class="py-2.5 text-xs">매주 GitHub 커밋 + Vercel 자동 배포 + 광고 영상</td></tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-gray-500 leading-relaxed mb-3">
+                    "Vibe Coding"으로 시작해 Facebook 스타일 학교 커뮤니티 앱 <strong class="text-gray-700">EAGLE INT</strong>를 처음부터 혼자 설계·구현하는 과정입니다.
+                    포스팅, 채팅, 캘린더, AI 챗봇(Eagle Bot)까지 실제 학교에서 쓸 수 있는 서비스를 완성하는 것이 핵심 목표입니다.
+                </p>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    고1임에도 Supabase 스키마 설계, Vercel CI/CD, 테스트 코드 작성까지 도전한 규언 학생의 경험은
+                    <span class="font-semibold text-gray-700">실질적인 풀스택 포트폴리오</span>로 이어집니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- SESSION PANELS (populated by JS) -->
+        <div id="panel-w1"  class="tab-panel"></div>
+        <div id="panel-w2"  class="tab-panel"></div>
+        <div id="panel-w3"  class="tab-panel"></div>
+        <div id="panel-w4"  class="tab-panel"></div>
+        <div id="panel-w5"  class="tab-panel"></div>
+        <div id="panel-w6"  class="tab-panel"></div>
+        <div id="panel-w7"  class="tab-panel"></div>
+        <div id="panel-w8"  class="tab-panel"></div>
+        <div id="panel-w9"  class="tab-panel"></div>
+        <div id="panel-w10" class="tab-panel"></div>
+        <div id="panel-w11" class="tab-panel"></div>
+        <div id="panel-w12" class="tab-panel"></div>
+        <div id="panel-w13" class="tab-panel"></div>
+        <div id="panel-w14" class="tab-panel"></div>
+        <div id="panel-w15" class="tab-panel"></div>
+        <div id="panel-w16" class="tab-panel"></div>
+        <div id="panel-w17" class="tab-panel"></div>
+        <div id="panel-w18" class="tab-panel"></div>
+        <div id="panel-w19" class="tab-panel"></div>
+        <div id="panel-w20" class="tab-panel"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#111827] text-gray-400 text-center py-10 px-4">
+        <p class="text-white font-black text-base mb-1">글로벌공대인</p>
+        <p class="text-xs mb-3">US 유학 / 취업 전문 컨설팅 서비스</p>
+        <div class="flex justify-center gap-4 text-xs">
+            <a href="#" class="hover:text-white transition-colors">Website</a>
+            <a href="#" class="hover:text-white transition-colors">YouTube</a>
+        </div>
+        <p class="text-[10px] mt-4 text-gray-600">© 2026 글로벌공대인. All rights reserved.</p>
+    </footer>
+
+    <script>
+    const sessions = [
+        {
+            id: "w1", week: 1, date: "Sep 7",
+            title: "Vibe Coding 101",
+            tag: "Planning", tagColor: "#0369a1",
+            status: "Completed",
+            desc: "Vibe Coding의 개념을 이해하고, 코스 전체 목표를 설정. Facebook 스타일의 학교 커뮤니티 앱 'EAGLE INT'를 최종 산출물로 결정.",
+            topics: [
+                "Vibe Coding 개념 이해 — 자연어로 기능 명세 후 AI 협업 구현",
+                "코스 목표 설정 및 Facebook 스타일 앱 기획",
+                "핵심 기능 리스트업 및 유저 시나리오 정의"
+            ],
+            topicTags: ["Vibe Coding", "Project Planning", "Ideation", "User Story"],
+            homework: "로컬 개발 환경 셋업 완료 + 웹 기능 및 목적 디자인 문서 작성"
+        },
+        {
+            id: "w2", week: 2, date: "Sep 14",
+            title: "로컬 개발환경 설정",
+            tag: "Planning", tagColor: "#0369a1",
+            status: "Completed",
+            desc: "로컬 개발 환경을 구축하고 웹 서비스의 초안을 디자인. Vercel과 Supabase 계정을 생성하고 메인 페이지 구현을 준비.",
+            topics: [
+                "Node.js / Git / VS Code 로컬 환경 구축",
+                "웹 서비스 와이어프레임 및 기능 구조 설계",
+                "Vercel & Supabase 계정 셋업 준비"
+            ],
+            topicTags: ["Local Dev", "Git", "Vercel", "Supabase", "Wireframe"],
+            homework: "Vercel / Supabase 셋업 완료 + 메인 페이지 초안 구현"
+        },
+        {
+            id: "w3", week: 3, date: "Oct 5",
+            title: "대시보드 구현",
+            tag: "Phase 1", tagColor: "#7c3aed",
+            status: "Completed",
+            desc: "로컬 Supabase를 세팅하고 학교 환경에서 Gemini 앱을 동작시키는 데 성공. 배포 파이프라인의 기초를 마련.",
+            topics: [
+                "로컬 Supabase 클라이언트 설정 및 DB 연결",
+                "Gemini API 키 발급 및 학교 네트워크에서 동작 확인",
+                "초기 대시보드 레이아웃 구현"
+            ],
+            topicTags: ["Supabase", "Gemini AI", "Dashboard", "API"],
+            homework: "웹사이트 Vercel 배포 후 채널에 공유"
+        },
+        {
+            id: "w4", week: 4, date: "Oct 12",
+            title: "Vercel 배포 성공",
+            tag: "Phase 1", tagColor: "#7c3aed",
+            status: "Completed",
+            desc: "변경 사항을 Vercel에 push하고 퍼블릭 URL로 웹페이지 접근에 성공. CI/CD 파이프라인을 이해하고 자동 배포 흐름을 익힘.",
+            topics: [
+                "GitHub → Vercel 자동 배포 파이프라인 구축",
+                "퍼블릭 URL로 웹슟이트 접근 확인",
+                "학교 노트북에 개발 환경 복제 셋업"
+            ],
+            topicTags: ["Vercel", "CI/CD", "GitHub Push", "Deployment"],
+            homework: "#1 Commit & Push 후 Vercel 자동 배포 확인 → https://grchs-social-app-with-gemini.vercel.app/\n#2 학교 노트북에도 동일 환경 셋업"
+        },
+        {
+            id: "w5", week: 5, date: "Oct 19",
+            title: "Vercel 배포 안정화",
+            tag: "Phase 1", tagColor: "#7c3aed",
+            status: "Completed",
+            desc: "Vercel 배포를 안정화하여 일관된 결과를 확인. 로컬 테스트와 프로덕션 환경의 차이를 좁히는 작업 진행.",
+            topics: [
+                "환경 변수(env) 관리 및 Vercel 대시보드 연동",
+                "로컬 vs Vercel 동작 차이 트러블슈팅",
+                "브랜치 전략 및 배포 흐름 정리"
+            ],
+            topicTags: ["Environment Variables", "Deployment", "Troubleshooting", "Branch Strategy"],
+            homework: "Vercel 앱 안정적으로 배포 완료 확인"
+        },
+        {
+            id: "w6", week: 6, date: "Oct 26",
+            title: "로그인 기능 구현",
+            tag: "Phase 2", tagColor: "#0891b2",
+            status: "Completed",
+            desc: "Vercel 웹사이트에서 계정으로 로그인 성공. '캐시 지우기'가 로컬과 배포 환경의 불일치 문제를 해결하는 핵심 방법임을 습득.",
+            topics: [
+                "Supabase Auth를 이용한 이메일/비밀번호 로그인 구현",
+                "캐시 문제 디버깅 — 로컬과 Vercel 환경 차이 해결",
+                "로그인 화면 UI 구성 (이메일 입력, 비밀번호)"
+            ],
+            topicTags: ["Supabase Auth", "Login", "Cache Debugging", "UI"],
+            homework: "1. 포스팅 기능 수정 — 댓글 정상 등록 확인 (로컬 + Vercel)\n2. 로그인 화면에 '비밀번호 찾기' 추가 및 Vercel 동작 확인"
+        },
+        {
+            id: "w7", week: 7, date: "Nov 9",
+            title: "로그인 디버깅 & 캘린더",
+            tag: "Phase 2", tagColor: "#0891b2",
+            status: "Completed",
+            desc: "Vercel 셋업 이슈를 해결하고 로그인 버그를 수정. 안정적인 인증 플로우를 구축 후 캘린더 앱 구현에 착수.",
+            topics: [
+                "Vercel 빌드 오류 디버깅 및 환경 변수 재정비",
+                "로그인 인증 플로우 버그 수정 (Supabase Session 처리)",
+                "캘린더 컴포넌트 초기 설계 및 구현 착수"
+            ],
+            topicTags: ["Debugging", "Supabase Session", "Auth", "Calendar"],
+            homework: "Vercel 앱 배포 + 로그인 성공 확인 + 캘린더 앱 구현 (탭 겹침 이슈 수정)"
+        },
+        {
+            id: "w8", week: 8, date: "Nov 23",
+            title: "포스트 기능 구현",
+            tag: "Phase 2", tagColor: "#0891b2",
+            status: "Completed",
+            desc: "피드에 포스트를 작성하고 다른 사용자가 볼 수 있는 기능을 완성. SNS의 핵심인 소셜 피드를 구현.",
+            topics: [
+                "포스트 작성 폼 UI 및 Supabase DB 연동",
+                "실시간 피드 조회 — 작성자·시간·내용 표시",
+                "포스트 삭제 기능 및 미디어 첨부 기초 구현"
+            ],
+            topicTags: ["Post", "Feed", "Supabase DB", "CRUD", "Media"],
+            homework: "포스트 삭제 기능 구현 + 미디어(이미지) 업로드 기능 구현"
+        },
+        {
+            id: "w9", week: 9, date: "Nov 30",
+            title: "채팅 & 투표 구현",
+            tag: "Phase 2", tagColor: "#0891b2",
+            status: "Completed",
+            desc: "투표(Votes) 기능과 채팅 기능을 성공적으로 구현. 학교 커뮤니티에 필요한 상호작용 기능을 추가.",
+            topics: [
+                "Votes(투표) 기능 — 게시글 좋아요/반응 시스템",
+                "실시간 채팅 기능 구현 (Supabase Realtime)",
+                "채팅 UI — 메시지 버블, 타임스탬프 표시"
+            ],
+            topicTags: ["Voting", "Real-time Chat", "Supabase Realtime", "UI"],
+            homework: "채팅에서 Mock 데이터 제거 + 신규 계정 생성 후 채팅 테스트 진행"
+        },
+        {
+            id: "w10", week: 10, date: "Dec 21",
+            title: "채팅 심화 & 삭제 기능",
+            tag: "Phase 2", tagColor: "#0891b2",
+            status: "Completed",
+            desc: "채팅 메시지 삭제 기능을 구현하고 고급 기능 개발의 발판을 마련. Eagle Bot, 시간 제한 채팅, 패스코드 인증 등 다음 단계 로드맵 확정.",
+            topics: [
+                "채팅 메시지 삭제 기능 구현",
+                "Mock 데이터 제거 및 실 데이터 연동 정리",
+                "Eagle Bot · 패스코드 인증 · 이메일 파싱 기능 로드맵 수립"
+            ],
+            topicTags: ["Delete", "Chat", "Roadmap", "Eagle Bot"],
+            homework: "Eagle Bot + 시간 제한 채팅 + 패스코드 인증 + 공지 저장 + 이메일 파싱 + 비학교 이메일 차단 구현"
+        },
+        {
+            id: "w11", week: 11, date: "Jan 18",
+            title: "Eagle Bot (AI 챗봇) 구현",
+            tag: "Phase 3", tagColor: "#ea580c",
+            status: "Completed",
+            desc: "Gemini AI를 활용한 Eagle Bot 챗봇을 앱에 추가. 학생들이 학교 관련 질문을 AI에게 물어볼 수 있는 기능을 구현.",
+            topics: [
+                "Gemini API 연동 및 Eagle Bot 채팅 UI 구현",
+                "학교 컨텍스트 프롬프트 설계 (GRCHS 특화)",
+                "챗봇 메시지 렌더링 및 로딩 상태 처리"
+            ],
+            topicTags: ["Gemini AI", "Chatbot", "Eagle Bot", "Prompt Engineering"],
+            homework: "Eagle Bot 완성 + 패스코드 인증 구현 + 공지 저장 기능 구현"
+        },
+        {
+            id: "w12", week: 12, date: "Jan 25",
+            title: "테스트 코드 추가",
+            tag: "Phase 3", tagColor: "#ea580c",
+            status: "Completed",
+            desc: "앱에 테스트 스위트를 추가하여 코드 품질을 체계적으로 검증하는 환경을 구축. 현재 버그를 테스트로 파악하고 수정.",
+            topics: [
+                "테스트 프레임워크 도입 및 테스트 스위트 설정",
+                "핵심 기능(로그인, 포스팅, 채팅)에 대한 테스트 케이스 작성",
+                "테스트 결과를 기반으로 현재 이슈 식별 및 수정"
+            ],
+            topicTags: ["Testing", "Test Suite", "Quality", "Bug Fix"],
+            homework: "테스트 스위트로 현재 이슈 수정 완료"
+        },
+        {
+            id: "w13", week: 13, date: "Feb 8",
+            title: "회원가입 프로세스 수정",
+            tag: "Phase 3", tagColor: "#ea580c",
+            status: "Completed",
+            desc: "Supabase 스키마를 업데이트하여 회원가입 프로세스의 문제점을 해결. 학교 이메일 기반 인증 흐름을 정비.",
+            topics: [
+                "Supabase 스키마 업데이트 (Users 테이블 컬럼 정비)",
+                "회원가입 폼 유효성 검사 및 에러 처리 개선",
+                "학교 이메일(@grchs) 전용 가입 제한 로직"
+            ],
+            topicTags: ["Supabase Schema", "Sign-up", "Validation", "Email Filter"],
+            homework: "회원가입 프로세스 수정 완료 + Vercel 재배포"
+        },
+        {
+            id: "w14", week: 14, date: "Feb 15",
+            title: "캘린더 구현 & 모듈화",
+            tag: "Phase 3", tagColor: "#ea580c",
+            status: "Completed",
+            desc: "HTML 파일을 모듈화하여 코드 유지보수성을 향상. 학사 일정을 관리하는 캘린더 기능을 본격 구현.",
+            topics: [
+                "HTML/JS 파일 모듈화 — 컴포넌트 분리 구조 적용",
+                "캘린더 UI 구현 — 월별 뷰, 일정 추가/삭제",
+                "광고 영상 제작 준비 — 기획 및 스크립트 작성"
+            ],
+            topicTags: ["Modularization", "Calendar", "Component", "Video Planning"],
+            homework: "앱 소개 광고 영상 직접 제작 (Vrew AI 활용)"
+        },
+        {
+            id: "w15", week: 15, date: "Feb 22",
+            title: "UI 개선 & 영상 제작",
+            tag: "Phase 3", tagColor: "#ea580c",
+            status: "Completed",
+            desc: "폴더 구조를 정리하고 Vrew AI로 앱 소개 쇼트폼 영상을 제작. 전반적인 Look & Feel을 개선하여 완성도를 높임.",
+            topics: [
+                "프로젝트 폴더 구조 정리 및 코드 리팩토링",
+                "Vrew AI를 활용한 쇼트폼 광고 영상 제작",
+                "전체 UI/UX 일관성 점검 및 개선"
+            ],
+            topicTags: ["Refactoring", "Vrew AI", "Short-form Video", "UI/UX"],
+            homework: "Vrew AI로 광고 영상 완성 + Vercel 최종 배포"
+        },
+        {
+            id: "w16", week: 16, date: "Mar 8",
+            title: "미완성 기능 마무리",
+            tag: "Final", tagColor: "#16a34a",
+            status: "In Progress",
+            desc: "패스코드 인증, 공지 저장, 이메일 파싱(학년/교사 구분), 비학교 이메일 차단 등 남은 핵심 기능을 완성. 앱의 실제 서비스 수준을 끌어올린다.",
+            topics: [
+                "Auth Allowance by Passcode — 초대 코드 기반 가입 제한",
+                "Saved Announcement — 중요 공지 저장 및 고정 기능",
+                "이메일 파싱으로 학년(고1~3) / 교사 자동 구분"
+            ],
+            topicTags: ["Passcode Auth", "Announcement", "Email Parsing", "Access Control"],
+            homework: "구현된 기능 전체 Vercel 배포 후 동작 확인"
+        },
+        {
+            id: "w17", week: 17, date: "Mar 15",
+            title: "전체 버그 수정 & 폴리싱",
+            tag: "Final", tagColor: "#16a34a",
+            status: "Upcoming",
+            desc: "테스트 스위트를 활용해 현존하는 버그를 체계적으로 수정하고 앱 전체의 완성도를 높이는 폴리싱 작업을 진행.",
+            topics: [
+                "잔여 버그 목록 작성 및 우선순위 분류",
+                "테스트 케이스 기반 회귀 테스트 실행",
+                "모바일 반응형 UI 점검 및 최종 디자인 다듬기"
+            ],
+            topicTags: ["Bug Fix", "Regression Test", "Responsive", "Polish"],
+            homework: "버그 수정 완료 후 Vercel 재배포 + 지인 베타 테스트 요청"
+        },
+        {
+            id: "w18", week: 18, date: "Mar 22",
+            title: "광고 영상 촬영 & 편집",
+            tag: "Final", tagColor: "#16a34a",
+            status: "Upcoming",
+            desc: "EAGLE INT를 소개하는 본격 광고 영상을 촬영하고 Vrew AI로 자막·편집을 완성. 실제 학생들이 앱을 사용하는 장면을 담아 설득력을 높인다.",
+            topics: [
+                "영상 스크립트 및 촬영 콘티 작성",
+                "앱 사용 장면 화면 녹화 + 실제 촬영 진행",
+                "Vrew AI 자막 자동 생성 및 편집 완성"
+            ],
+            topicTags: ["Video Production", "Vrew AI", "Screen Recording", "Marketing"],
+            homework: "완성된 영상 YouTube / Instagram에 업로드"
+        },
+        {
+            id: "w19", week: 19, date: "Mar 29",
+            title: "최종 배포 & 사용자 테스트",
+            tag: "Final", tagColor: "#16a34a",
+            status: "Upcoming",
+            desc: "EAGLE INT를 실제 학교 학생들에게 공개하고 피드백을 수집. 프로덕션 배포 안정성을 최종 검증하고 모니터링 체계를 갖춘다.",
+            topics: [
+                "Vercel 프로덕션 최종 배포 및 커스텀 도메인 설정 검토",
+                "실제 학생 5명 이상 베타 테스트 및 피드백 수집",
+                "앱 사용 가이드(README) 작성"
+            ],
+            topicTags: ["Production Deploy", "Beta Test", "Feedback", "README"],
+            homework: "배포 URL + 베타 테스트 결과 정리 문서 제출"
+        },
+        {
+            id: "w20", week: 20, date: "Apr 5",
+            title: "포트폴리오 완성",
+            tag: "Final", tagColor: "#16a34a",
+            status: "Upcoming",
+            desc: "20주 여정을 마무리하며 포트폴리오 문서와 발표 자료를 완성. EAGLE INT 개발 전 과정을 정리해 CS 입시·대외활동에 활용할 수 있는 결과물로 완성한다.",
+            topics: [
+                "포트폴리오 README — 기술 스택, 아키텍처 다이어그램, 스크린샷",
+                "개발 회고 — 배운 점, 어려웠던 점, 성장 스토리 작성",
+                "최종 데모 영상(3분) 녹화 및 발표 준비"
+            ],
+            topicTags: ["Portfolio", "Retrospective", "Presentation", "Demo Video"],
+            homework: "최종 배포 URL + 포트폴리오 문서 + 3분 데모 영상 제출"
+        }
+    ];
+
+    function tagBadge(tag, color) {
+        return `<span style="background:${color}18;color:${color};border:1px solid ${color}44;" class="text-[10px] font-bold px-2.5 py-0.5 rounded-md flex-shrink-0">${tag}</span>`;
+    }
+
+    // Build overview list
+    const overviewList = document.getElementById('overview-list');
+    sessions.forEach((s, i) => {
+        const isDone = s.status === 'Completed';
+        const isIn   = s.status === 'In Progress';
+        const row = document.createElement('div');
+        row.className = `session-row flex items-center gap-4 px-5 py-4 ${i < sessions.length - 1 ? 'border-b border-gray-50' : ''}`;
+        row.onclick = () => {
+            const btn = document.querySelectorAll('.tab-btn')[i + 1];
+            switchTab(s.id, btn);
+        };
+        row.innerHTML = `
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm
+                ${isDone ? 'bg-sky-600 text-white' : isIn ? 'bg-orange-400 text-white' : 'bg-gray-100 text-gray-400'}">
+                ${isDone ? '<i class="fas fa-check text-xs"></i>' : isIn ? '<i class="fas fa-spinner fa-spin text-xs"></i>' : s.week}
+            </div>
+            <div class="flex-grow min-w-0">
+                <p class="text-sm font-bold ${isDone ? 'line-through text-gray-400' : 'text-gray-800'}">${s.title}</p>
+                <p class="text-xs text-gray-400 truncate mt-0.5">${s.date} · ${s.homework.split('\n')[0]}</p>
+            </div>
+            ${tagBadge(s.tag, s.tagColor)}
+        `;
+        overviewList.appendChild(row);
+    });
+
+    // Build each session panel
+    sessions.forEach(s => {
+        const isDone = s.status === 'Completed';
+        const isIn   = s.status === 'In Progress';
+        const panel  = document.getElementById(`panel-${s.id}`);
+
+        const statusBar = isDone
+            ? `<div class="flex items-center gap-2 text-emerald-600 font-bold text-sm"><div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center"><i class="fas fa-check text-white text-[10px]"></i></div> Completed</div>`
+            : isIn
+            ? `<div class="flex items-center gap-2 text-orange-500 font-bold text-sm"><div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center"><i class="fas fa-spinner fa-spin text-white text-[10px]"></i></div> In Progress</div>`
+            : `<div class="flex items-center gap-2 text-gray-400 font-bold text-sm"><div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center"><i class="far fa-circle text-gray-400 text-[10px]"></i></div> Upcoming</div>`;
+
+        const hwLines = s.homework.split('\n').map(l => `<li class="flex items-start gap-2"><span class="mt-1.5 w-1 h-1 bg-yellow-400 rounded-full flex-shrink-0"></span>${l}</li>`).join('');
+
+        panel.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="px-6 pt-6 pb-5 border-b border-gray-50">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-sky-600">Session ${s.week} · ${s.date}</span>
+                    ${tagBadge(s.tag, s.tagColor)}
+                </div>
+                <h2 class="text-xl font-extrabold text-gray-900 tracking-tight leading-snug">${s.title}</h2>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <div class="bg-gray-50 rounded-xl p-4 text-sm text-gray-600 leading-relaxed">${s.desc}</div>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-list-ul text-sky-500"></i> TOPICS
+                </p>
+                <ul class="space-y-2.5 mb-4">
+                    ${s.topics.map(t => `
+                    <li class="flex items-start gap-3 text-sm text-gray-700">
+                        <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>${t}
+                    </li>`).join('')}
+                </ul>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                    ${s.topicTags.map(t => `<span class="bg-gray-100 text-gray-500 text-[10px] font-semibold px-2.5 py-1 rounded-md">${t}</span>`).join('')}
+                </div>
+            </div>
+            <div class="px-6 py-5 border-b border-gray-50">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-pencil-alt text-yellow-500"></i> HOMEWORK
+                </p>
+                <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4">
+                    <ul class="space-y-1.5 text-sm text-gray-700 leading-relaxed">${hwLines}</ul>
+                </div>
+            </div>
+            <div class="px-6 py-4">${statusBar}</div>
+        </div>`;
+    });
+
+    function switchTab(id, btn) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`panel-${id}`).classList.add('active');
+        if (btn) { btn.classList.add('active'); btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    </script>
+
+</body>
+</html>
